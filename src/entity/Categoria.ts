@@ -10,6 +10,10 @@ export class Categoria{
 
     @Column()
     @IsNotEmpty()
+    codigo:string;
+
+    @Column()
+    @IsNotEmpty()
     nombre:string;
 
     @Column()

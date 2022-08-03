@@ -40,9 +40,10 @@ class CategoriaController{
     //Crear nueva categoria
     static newCategoria = async(req:Request, res:Response)=>{
         //desestructurar para traer datos
-        const {nombre,descripcion} = req.body;
+        const {codigo, nombre,descripcion} = req.body;
         ////////////////////////////////
         const categoria = new Categoria();
+        categoria.codigo = codigo;
         categoria.nombre = nombre;
         categoria.descripcion = descripcion;
 
@@ -62,7 +63,7 @@ class CategoriaController{
     static editCategoria = async(req:Request, res:Response)=>{
         let categoria;
         const {id} = req.params;
-        const {nombre, descripcion} = req.body;
+        const {codigo, nombre, descripcion} = req.body;
         const categoriaRepository = getRepository(Categoria);//clase Categoria
 
         try {
@@ -74,6 +75,7 @@ class CategoriaController{
             });
         }
 
+        categoria.codigo = codigo;
         categoria.nombre = nombre;
         categoria.descripcion = descripcion;
         

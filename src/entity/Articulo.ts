@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from "typeorm";
 import { IsNotEmpty } from 'class-validator';
 import { Ventas } from './Ventas'
 import { Categoria } from "./Categoria";
@@ -16,6 +16,9 @@ export class Articulo{
     nombre:string;
 
     @Column()
+    descripcion:string;
+
+    @Column()
     precio_compra:number;
 
     @Column()
@@ -29,6 +32,7 @@ export class Articulo{
         eager:true,
         cascade:true
     })
+    @JoinColumn({name:'idCategoria'})
     categoria:Categoria
     /*-------------------------------------------------------- */
     //Relacion 1 - N con Ventas
